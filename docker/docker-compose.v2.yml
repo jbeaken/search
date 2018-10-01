@@ -1,0 +1,23 @@
+version: '2'
+networks:
+  blah:
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.4.3
+    networks:
+      blah:
+        aliases:
+          - elasticsearch
+    environment:
+      - discovery.type=single-node
+      - bootstrap.memory_lock=true
+      - xpack.security.enabled=false
+      - index.store.type=niofs
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    #volumes:
+    #  - /home/hal/dev/elasticsearch-5.6.7/data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
