@@ -1,0 +1,33 @@
+<div class="container">
+    <h1>Search</h1>
+    <form (ngSubmit)="onSubmit()" #searchForm="ngForm">
+
+      <div class="form-group">
+        <label for="name">Search</label>
+        <input type="text" class="form-control" [(ngModel)]="q" required name="q" #name="ngModel">
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!searchForm.form.valid">Submit</button>
+
+    </form>
+
+      <table class="table table-striped table-bordered">
+
+        <thead>
+          <th>Headline</th>
+          <th>Published</th>
+          <th>Summary</th>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let article of articles">
+                <td>{{article.headline}}</td>
+                <td>{{article.published}}</td>
+                <td>{{article.summary}}</td>
+            </tr>
+        </tbody>
+
+      </table>
+
+    <div>{{error.message}}</div>
+</div>
